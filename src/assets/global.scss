@@ -1,0 +1,201 @@
+/* 重置样式 */
+body {
+  margin: 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+html {
+  font-size: 14px;
+}
+
+// 基本颜色
+$color: (
+  'primary': #1a73e8,
+  'black': black,
+  'white': white,
+  'gray1': #fafafa,
+  'gray2': rgba(26, 26, 26, 0.5)
+);
+@each $key, $val in $color {
+  .text-#{$key} {
+    color: $val;
+  }
+}
+
+// 文本布局
+@each $key in (lfet, center, right) {
+  .text-#{$key} {
+    text-align: $key;
+  }
+}
+
+// 布局
+.d-flex {
+  display: flex;
+}
+.flex-frow-1 {
+  flex-grow: 1;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+// jc - center 主轴对齐方式
+$flex-jc: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  between: space-between,
+  around: space-around
+);
+@each $jcKey, $jcVal in $flex-jc {
+  .jc-#{$jcKey} {
+    justify-content: $jcVal;
+  }
+}
+
+// ai-center 交叉轴对齐方式
+$flex-ai: (
+  start: flex-start,
+  end: flex-end,
+  center: center
+);
+@each $aiKey, $aiVal in $flex-ai {
+  .ai-#{$aiKey} {
+    align-items: $aiVal;
+  }
+}
+
+// 文本大小
+$text-size-base: 1rem;
+$text-size: (
+  xs: 0.8571,
+  sm: 1,
+  md: 1.1429,
+  lg: 1.4286
+);
+@each $key, $val in $text-size {
+  .text-#{$key} {
+    font-size: $val * $text-size-base;
+  }
+}
+
+// 设置内边距和外边距
+$spacing-types: (
+  m: margin,
+  p: padding
+);
+$spacing-directions: (
+  t: top,
+  r: right,
+  l: left,
+  b: bottom
+);
+$spacing-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3
+);
+$spacing-size-base: 1rem;
+@each $typeKey, $typeVal in $spacing-types {
+  @each $directionKey, $directionVal in $spacing-directions {
+    @each $sizeKey, $sizeVal in $spacing-sizes {
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$typeVal}-#{$directionVal}: $sizeVal * $spacing-size-base;
+      }
+    }
+  }
+  @each $sizeKey, $sizeVal in $spacing-sizes {
+    // mx-0 0rem
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$typeVal}-left: $sizeVal * $spacing-size-base;
+      #{$typeVal}-right: $sizeVal * $spacing-size-base;
+    }
+    // my-0 0rem
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$typeVal}-top: $sizeVal * $spacing-size-base;
+      #{$typeVal}-bottom: $sizeVal * $spacing-size-base;
+    }
+    // -0-0rem
+    .#{$typeKey}-#{$sizeKey} {
+      #{$typeVal}: $sizeVal * $spacing-size-base;
+    }
+  }
+}
+
+// 字体权重
+$text-weight: (
+  1: 100,
+  2: 200,
+  3: 300,
+  4: 400,
+  5: 500,
+  6: 600,
+  7: 700,
+  8: 800,
+  9: 900
+);
+@each $key, $val in $text-weight {
+  .text-weight-#{$key} {
+    font-weight: $val;
+  }
+}
+
+// 定位
+.pos-a {
+  position: absolute;
+}
+.pos-r {
+  position: relative;
+}
+$pos-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3
+);
+$pos-size-base: 1rem;
+@each $directionVal in (left, top, right, bottom) {
+  @each $sizeKey, $sizeVal in $pos-sizes {
+    .#{$directionVal}-#{$sizeKey} {
+      #{$directionVal}: $sizeVal * $pos-size-base;
+    }
+  }
+}
+
+// 导航被选中样式
+.nav-active {
+  color: #1a73e8;
+  font-weight: 700;
+}
+.w-100 {
+  width: 100%;
+}
+
+.singer-cative {
+  color: white;
+  background-color: #1a73e8;
+  border-radius: 0.6rem;
+}
